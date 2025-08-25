@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env
+
+DEBUG = os.environ.get("DEBUG", "0") == "1"
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%rrckw*oj8me%=_q-wpgq)#+sjs3uvu$z+sf1!2jp@@bunmkci'
+SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']  # or your Render URL if known
+ALLOWED_HOSTS = ["https://salon-billing-1.onrender.com", "127.0.0.1", "localhost"]
 
 
 
